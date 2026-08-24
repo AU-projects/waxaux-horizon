@@ -8,6 +8,33 @@
     "theme_support_url": "https://support.shopify.com/"
   },
   {
+    "name": "WaxAux brand",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Design tokens used across the WaxAux sections (hero, shop the shelf, waveform dividers, collection/product banners). Change here instead of editing hex values in section CSS."
+      },
+      {
+        "type": "color",
+        "id": "brand_color_mint",
+        "label": "Mint (primary surface)",
+        "default": "#6FDDA0"
+      },
+      {
+        "type": "color",
+        "id": "brand_color_ink",
+        "label": "Ink (text / rules / inverted CTAs)",
+        "default": "#111111"
+      },
+      {
+        "type": "color",
+        "id": "brand_color_cream",
+        "label": "Cream (page background)",
+        "default": "#F0EEE9"
+      }
+    ]
+  },
+  {
     "name": "t:names.logo_and_favicon",
     "settings": [
       {

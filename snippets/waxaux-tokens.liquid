@@ -1,0 +1,12 @@
+{% comment %}
+  Emits the WaxAux brand colors (Theme Settings → WaxAux brand) as CSS custom
+  properties, so section CSS (assets/waxaux-theme.css) and section defaults
+  reference settings.* instead of hardcoded hex.
+{% endcomment %}
+{% style %}
+  :root {
+    --waxaux-mint: {{ settings.brand_color_mint | default: '#6FDDA0' }};
+    --waxaux-ink: {{ settings.brand_color_ink | default: '#111111' }};
+    --waxaux-cream: {{ settings.brand_color_cream | default: '#F0EEE9' }};
+  }
+{% endstyle %}

@@ -1,6 +1,6 @@
 {% comment %}
   Numbered category list — editorial routing block for the homepage.
-  Each block is one row: index number, category name, short description or item count, and a link.
+  Each block is one row: index number, category name, optional short description, and a link.
 {% endcomment %}
 
 {% liquid
@@ -51,9 +51,7 @@
               {%- endfor -%}
             </span>
           {%- endif -%}
-          {%- if block.settings.item_count != blank -%}
-            <span class="shop-the-shelf__count">{{ block.settings.item_count }} →</span>
-          {%- endif -%}
+          <span class="shop-the-shelf__count" aria-hidden="true">→</span>
         </a>
       {%- endif -%}
     {%- endfor -%}
@@ -277,12 +275,6 @@
           "label": "Description"
         },
         {
-          "type": "text",
-          "id": "item_count",
-          "label": "Item count label",
-          "default": "0 items"
-        },
-        {
           "type": "url",
           "id": "url",
           "label": "Link"
@@ -307,19 +299,19 @@
       "blocks": [
         {
           "type": "category",
-          "settings": { "title": "Sleeves & Storage", "item_count": "48 items", "highlight": true }
+          "settings": { "title": "Sleeves & Storage", "highlight": true }
         },
         {
           "type": "category",
-          "settings": { "title": "Cleaning", "description": "Fluids, brushes, full kits", "item_count": "31 items" }
+          "settings": { "title": "Cleaning", "description": "Fluids, brushes, full kits" }
         },
         {
           "type": "category",
-          "settings": { "title": "Turntables & Hardware", "description": "Clamps, weights, belts, styli", "item_count": "22 items" }
+          "settings": { "title": "Turntables & Hardware", "description": "Clamps, weights, belts, styli" }
         },
         {
           "type": "category",
-          "settings": { "title": "Slipmats", "description": "Felt, cork, acrylic", "item_count": "17 items" }
+          "settings": { "title": "Slipmats", "description": "Felt, cork, acrylic" }
         }
       ]
     }
