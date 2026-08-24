@@ -272,6 +272,45 @@
         "padding-block-end": 0
       }
     },
+    "marquee_product_specs": {
+      "type": "marquee",
+      "name": "Spec ticker",
+      "blocks": {
+        "text_specs": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Made to last ✦ Sized against real pressings ✦ Shipped flat ✦ 30-day returns</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-accent--family)",
+            "font_size": "0.75rem",
+            "line_height": "tight",
+            "letter_spacing": "normal",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "text_color": "#6FDDA0",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": ["text_specs"],
+      "settings": {
+        "movement_direction": "normal",
+        "background_color": "#111111",
+        "padding-block-start": 9,
+        "padding-block-end": 9,
+        "gap_between_elements": 28
+      }
+    },
     "product_recommendations_qggXJq": {
       "type": "product-recommendations",
       "blocks": {
@@ -279,7 +318,7 @@
           "type": "text",
           "name": "t:names.header",
           "settings": {
-            "text": "<h2>You may also like </h2>",
+            "text": "<h2>Pairs with</h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -410,6 +449,7 @@
   },
   "order": [
     "main",
+    "marquee_product_specs",
     "product_recommendations_qggXJq"
   ]
 }

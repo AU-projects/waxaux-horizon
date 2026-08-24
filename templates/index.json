@@ -317,7 +317,6 @@
           "settings": {
             "title": "Sleeves & Storage",
             "description": "",
-            "item_count": "48 items",
             "url": "shopify://collections/all",
             "highlight": true
           }
@@ -327,7 +326,6 @@
           "settings": {
             "title": "Cleaning",
             "description": "Fluids, brushes, full kits — Brillo and Tinyl",
-            "item_count": "31 items",
             "url": "shopify://collections/all",
             "highlight": false
           }
@@ -337,7 +335,6 @@
           "settings": {
             "title": "Turntables & Hardware",
             "description": "Clamps, weights, belts, styli",
-            "item_count": "22 items",
             "url": "shopify://collections/all",
             "highlight": false
           }
@@ -347,7 +344,6 @@
           "settings": {
             "title": "Slipmats",
             "description": "Felt, cork, acrylic",
-            "item_count": "17 items",
             "url": "shopify://collections/all",
             "highlight": false
           }
