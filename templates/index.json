@@ -1,8 +1,16 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "marquee_top": {
       "type": "marquee",
-      "name": "Ticker — shipping",
       "blocks": {
         "text_ticker_top": {
           "type": "text",
@@ -30,7 +38,10 @@
           "blocks": {}
         }
       },
-      "block_order": ["text_ticker_top"],
+      "block_order": [
+        "text_ticker_top"
+      ],
+      "name": "Ticker — shipping",
       "settings": {
         "movement_direction": "normal",
         "background_color": "#111111",
@@ -127,12 +138,16 @@
           "blocks": {}
         }
       },
-      "block_order": ["text_hero_heading", "text_hero_body", "button_hero_shop", "button_hero_kits"],
+      "block_order": [
+        "text_hero_heading",
+        "text_hero_body",
+        "button_hero_shop",
+        "button_hero_kits"
+      ],
       "name": "Hero — record care",
       "settings": {
         "media_type_1": "image",
         "media_type_2": "image",
-        "link": "",
         "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -168,12 +183,11 @@
         "text_color": "#6FDDA0",
         "horizontal_position": "flex-end",
         "pull_up": true,
-        "pull_up_amount": 130
+        "pull_up_amount": 128
       }
     },
     "shop_the_shelf": {
       "type": "shop-the-shelf",
-      "name": "Shop the shelf",
       "blocks": {
         "cat_sleeves": {
           "type": "category",
@@ -216,7 +230,13 @@
           }
         }
       },
-      "block_order": ["cat_sleeves", "cat_cleaning", "cat_hardware", "cat_slipmats"],
+      "block_order": [
+        "cat_sleeves",
+        "cat_cleaning",
+        "cat_hardware",
+        "cat_slipmats"
+      ],
+      "name": "Shop the shelf",
       "settings": {
         "heading": "Shop the shelf",
         "eyebrow": "04 categories",
@@ -227,7 +247,6 @@
     },
     "marquee_brands": {
       "type": "marquee",
-      "name": "Ticker — brands",
       "blocks": {
         "text_ticker_brands": {
           "type": "text",
@@ -255,7 +274,10 @@
           "blocks": {}
         }
       },
-      "block_order": ["text_ticker_brands"],
+      "block_order": [
+        "text_ticker_brands"
+      ],
+      "name": "Ticker — brands",
       "settings": {
         "movement_direction": "reverse",
         "background_color": "#111111",
@@ -339,7 +361,10 @@
               "blocks": {}
             }
           },
-          "block_order": ["product_list_text_moving", "product_list_button_all"]
+          "block_order": [
+            "product_list_text_moving",
+            "product_list_button_all"
+          ]
         },
         "static-product-card": {
           "type": "_product-card",
@@ -420,7 +445,11 @@
               "blocks": {}
             }
           },
-          "block_order": ["product_card_gallery_moving", "product_title_moving", "price_moving"]
+          "block_order": [
+            "product_card_gallery_moving",
+            "product_title_moving",
+            "price_moving"
+          ]
         }
       },
       "name": "Product list — best sellers",
@@ -445,7 +474,6 @@
     },
     "media_with_content_guide": {
       "type": "media-with-content",
-      "name": "Guide callout",
       "blocks": {
         "media": {
           "type": "_media-without-appearance",
@@ -470,8 +498,8 @@
                 "type_preset": "custom",
                 "font": "var(--font-accent--family)",
                 "font_size": "0.75rem",
-                "case": "uppercase",
-                "letter_spacing": "loose"
+                "letter_spacing": "loose",
+                "case": "uppercase"
               }
             },
             "group": {
@@ -498,13 +526,16 @@
                   }
                 }
               },
-              "block_order": ["heading", "text"]
+              "block_order": [
+                "heading",
+                "text"
+              ]
             },
             "button": {
               "type": "button",
               "settings": {
                 "label": "Read it",
-                "link": "shopify://pages",
+                "link": "shopify://collections/all",
                 "style_class": "button-custom",
                 "custom_button_background": "#111111",
                 "custom_button_text": "#6FDDA0",
@@ -512,10 +543,14 @@
               }
             }
           },
-          "block_order": ["caption", "group", "button"]
+          "block_order": [
+            "caption",
+            "group",
+            "button"
+          ]
         }
       },
-      "block_order": ["media", "content"],
+      "name": "Guide callout",
       "settings": {
         "media_position": "right",
         "media_width": "medium",
