@@ -41,6 +41,7 @@
       "block_order": [
         "text_ticker_top"
       ],
+      "disabled": true,
       "name": "Ticker — shipping",
       "settings": {
         "movement_direction": "normal",
@@ -167,8 +168,8 @@
         "overlay_color": "rgba(0,0,0,0)",
         "overlay_style": "solid",
         "gradient_direction": "to bottom",
-        "border": "none",
-        "border_width": 1,
+        "border": "solid",
+        "border_width": 2,
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
@@ -247,7 +248,7 @@
         "eyebrow": "04 categories",
         "section_width": "page-width",
         "background_color": "",
-        "padding-block-start": 44,
+        "padding-block-start": 29,
         "padding-block-end": 20
       }
     },
