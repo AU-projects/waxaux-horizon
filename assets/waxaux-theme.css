@@ -3,10 +3,13 @@
    --waxaux-mint / --waxaux-ink / --waxaux-cream come from Theme Settings → WaxAux brand,
    emitted by snippets/waxaux-tokens.liquid — don't hardcode brand hex here. */
 
-/* Product gallery: mint panel behind the media, matching the design's gallery slab */
+/* Product gallery: mint panel behind the media, matching the design's gallery slab.
+   !important needed: Horizon sets padding inline via the section's spacing-style,
+   which otherwise always wins over an external stylesheet rule on the same element. */
 media-gallery {
   background: var(--waxaux-mint);
-  padding: clamp(16px, 3vw, 32px);
+  padding: clamp(16px, 3vw, 32px) !important;
+  box-sizing: border-box;
 }
 
 /* Ticker / marquee bars: uppercase, tracked-out, monospace-leaning rhythm */
