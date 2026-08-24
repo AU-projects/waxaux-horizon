@@ -51,7 +51,7 @@
       }
     },
     "hero_waxaux": {
-      "type": "hero",
+      "type": "section",
       "blocks": {
         "text_hero_heading": {
           "type": "text",
@@ -146,9 +146,6 @@
       ],
       "name": "Hero — record care",
       "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
@@ -160,13 +157,13 @@
         "section_width": "full-width",
         "section_height": "medium",
         "section_height_custom": 55,
+        "background_media": "none",
         "background_color": "#6FDDA0",
         "toggle_overlay": false,
         "overlay_color": "#12121200",
         "overlay_style": "solid",
         "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
+        "border": "none",
         "padding-block-start": 56,
         "padding-block-end": 64
       }
