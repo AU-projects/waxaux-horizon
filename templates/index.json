@@ -88,7 +88,7 @@
             "placeholder": "",
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 0,
+            "padding-inline-start": 40,
             "padding-inline-end": 0
           },
           "blocks": {
@@ -233,10 +233,10 @@
         "group_hero_right": {
           "type": "group",
           "settings": {
-            "content_direction": "column",
+            "content_direction": "row",
             "vertical_on_mobile": false,
             "horizontal_alignment": "center",
-            "vertical_alignment": "center",
+            "vertical_alignment": "flex-end",
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "center",
             "vertical_alignment_flex_direction_column": "center",
@@ -251,7 +251,7 @@
             "background_color": "#ffffffeb",
             "video_position": "cover",
             "background_image": "shopify://shop_images/NzQtMjY0OS5qcGVn.jpg",
-            "background_image_position": "fit",
+            "background_image_position": "cover",
             "toggle_overlay": false,
             "overlay_color": "#00000026",
             "overlay_style": "solid",
@@ -266,8 +266,8 @@
             "placeholder": "",
             "padding-block-start": 0,
             "padding-block-end": 0,
-            "padding-inline-start": 20,
-            "padding-inline-end": 20
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
           "blocks": {
             "text_hero_placeholder": {
@@ -338,6 +338,7 @@
     },
     "stat_badge_reviews": {
       "type": "stat-badge",
+      "disabled": true,
       "name": "Review badge",
       "settings": {
         "line_1": "4.8★",
