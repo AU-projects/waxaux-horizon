@@ -56,9 +56,9 @@
         "text_hero_heading": {
           "type": "text",
           "settings": {
-            "text": "<p>Record care, done properly</p>",
+            "text": "<p>RECORD CARE, <br/>DONE PROPERLY</p>",
             "width": "fit-content",
-            "max_width": "none",
+            "max_width": "normal",
             "alignment": "left",
             "type_preset": "h1",
             "font": "var(--font-heading--family)",
