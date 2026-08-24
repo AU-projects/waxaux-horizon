@@ -1,0 +1,103 @@
+{% comment %}
+  Decorative bar-graph divider that echoes the waveform mark in the WaxAux logo.
+  A row of bars with alternating heights, centered.
+{% endcomment %}
+
+{% liquid
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+  assign heights = section.settings.bar_pattern | split: ','
+%}
+
+<div
+  class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+<div
+  class="waveform-divider section spacing-style{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  <div class="waveform-divider__bars" style="--waveform-color: {{ section.settings.bar_color }};">
+    {%- for h in heights -%}
+      <span class="waveform-divider__bar" style="--bar-height: {{ h | strip }}px;"></span>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .waveform-divider {
+    display: flex;
+    justify-content: center;
+  }
+
+  .waveform-divider__bars {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .waveform-divider__bar {
+    display: block;
+    width: 9px;
+    height: var(--bar-height);
+    background: var(--waveform-color, #111);
+    border-radius: 999px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Waveform divider",
+  "tag": "section",
+  "class": "section-waveform-divider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "bar_pattern",
+      "label": "Bar heights (comma separated, px)",
+      "default": "9,26,44,60,44,26,9"
+    },
+    {
+      "type": "color",
+      "id": "bar_color",
+      "label": "Bar color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "placeholder": "Default"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "Waveform divider"
+    }
+  ]
+}
+{% endschema %}
