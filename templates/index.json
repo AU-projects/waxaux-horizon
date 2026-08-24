@@ -1,33 +1,62 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "hero_jVaWmY": {
-      "type": "hero",
+    "marquee_top": {
+      "type": "marquee",
+      "name": "Ticker — shipping",
       "blocks": {
-        "text_YLPk4p": {
+        "text_ticker_top": {
           "type": "text",
-          "name": "t:names.heading",
           "settings": {
-            "text": "<p>Browse our latest products</p>",
+            "text": "<p>Free UK shipping over £40 ✦ Shipped flat, never folded ✦ 30-day returns</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
+            "type_preset": "custom",
+            "font": "var(--font-accent--family)",
+            "font_size": "0.75rem",
+            "line_height": "tight",
             "letter_spacing": "normal",
-            "case": "none",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "text_color": "#6FDDA0",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": ["text_ticker_top"],
+      "settings": {
+        "movement_direction": "normal",
+        "background_color": "#111111",
+        "padding-block-start": 9,
+        "padding-block-end": 9,
+        "gap_between_elements": 28
+      }
+    },
+    "hero_waxaux": {
+      "type": "hero",
+      "blocks": {
+        "text_hero_heading": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Record care, done properly</p>",
+            "width": "fit-content",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "h1",
+            "font": "var(--font-heading--family)",
+            "font_size": "",
+            "line_height": "tight",
+            "letter_spacing": "normal",
+            "case": "uppercase",
             "wrap": "pretty",
-            "text_color": "{{ settings.color_palette.background }}",
+            "text_color": "#111111",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -38,17 +67,58 @@
           },
           "blocks": {}
         },
-        "button_H9gpTf": {
-          "type": "button",
-          "name": "t:names.button",
+        "text_hero_body": {
+          "type": "text",
           "settings": {
-            "label": "Shop all",
+            "text": "<p>Sleeves, cleaning, clamps and mats for people who actually play the things. Sized against real pressings. In stock, shipped flat.</p>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "paragraph",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "#111111",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "button_hero_shop": {
+          "type": "button",
+          "settings": {
+            "label": "Shop by type",
             "link": "shopify://collections/all",
             "open_in_new_tab": false,
             "style_class": "button-custom",
-            "custom_button_background": "rgba(0, 0, 0, 0)",
-            "custom_button_text": "{{ settings.color_palette.background }}",
-            "custom_button_border": "{{ settings.color_palette.background }}",
+            "custom_button_background": "#111111",
+            "custom_button_text": "#6FDDA0",
+            "custom_button_border": "#111111",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        },
+        "button_hero_kits": {
+          "type": "button",
+          "settings": {
+            "label": "Starter kits",
+            "link": "shopify://collections/all",
+            "open_in_new_tab": false,
+            "style_class": "button-custom",
+            "custom_button_background": "rgba(0,0,0,0)",
+            "custom_button_text": "#111111",
+            "custom_button_border": "#111111",
             "width": "fit-content",
             "custom_width": 100,
             "width_mobile": "fit-content",
@@ -57,11 +127,8 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "text_YLPk4p",
-        "button_H9gpTf"
-      ],
-      "name": "t:names.hero",
+      "block_order": ["text_hero_heading", "text_hero_body", "button_hero_shop", "button_hero_kits"],
+      "name": "Hero — record care",
       "settings": {
         "media_type_1": "image",
         "media_type_2": "image",
@@ -69,31 +136,140 @@
         "open_in_new_tab": false,
         "content_direction": "column",
         "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
+        "horizontal_alignment": "flex-start",
         "vertical_alignment": "flex-end",
         "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
+        "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
+        "gap": 22,
+        "section_width": "full-width",
         "section_height": "medium",
-        "section_height_custom": 50,
-        "toggle_overlay": true,
-        "overlay_color": "#12121266",
+        "section_height_custom": 55,
+        "background_color": "#6FDDA0",
+        "toggle_overlay": false,
+        "overlay_color": "#12121200",
         "overlay_style": "solid",
         "gradient_direction": "to bottom",
         "blurred_reflection": false,
         "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
+        "padding-block-start": 56,
+        "padding-block-end": 64
       }
     },
-    "product_list_fa6P9H": {
+    "stat_badge_reviews": {
+      "type": "stat-badge",
+      "name": "Review badge",
+      "settings": {
+        "line_1": "4.8★",
+        "line_2": "2,140 reviews",
+        "size": 100,
+        "rotation": -11,
+        "background_color": "#111111",
+        "text_color": "#6FDDA0",
+        "horizontal_position": "flex-end",
+        "pull_up": true,
+        "pull_up_amount": 130
+      }
+    },
+    "shop_the_shelf": {
+      "type": "shop-the-shelf",
+      "name": "Shop the shelf",
+      "blocks": {
+        "cat_sleeves": {
+          "type": "category",
+          "settings": {
+            "title": "Sleeves & Storage",
+            "description": "",
+            "item_count": "48 items",
+            "url": "shopify://collections/all",
+            "highlight": true
+          }
+        },
+        "cat_cleaning": {
+          "type": "category",
+          "settings": {
+            "title": "Cleaning",
+            "description": "Fluids, brushes, full kits — Brillo and Tinyl",
+            "item_count": "31 items",
+            "url": "shopify://collections/all",
+            "highlight": false
+          }
+        },
+        "cat_hardware": {
+          "type": "category",
+          "settings": {
+            "title": "Turntables & Hardware",
+            "description": "Clamps, weights, belts, styli",
+            "item_count": "22 items",
+            "url": "shopify://collections/all",
+            "highlight": false
+          }
+        },
+        "cat_slipmats": {
+          "type": "category",
+          "settings": {
+            "title": "Slipmats",
+            "description": "Felt, cork, acrylic",
+            "item_count": "17 items",
+            "url": "shopify://collections/all",
+            "highlight": false
+          }
+        }
+      },
+      "block_order": ["cat_sleeves", "cat_cleaning", "cat_hardware", "cat_slipmats"],
+      "settings": {
+        "heading": "Shop the shelf",
+        "eyebrow": "04 categories",
+        "section_width": "page-width",
+        "padding-block-start": 44,
+        "padding-block-end": 20
+      }
+    },
+    "marquee_brands": {
+      "type": "marquee",
+      "name": "Ticker — brands",
+      "blocks": {
+        "text_ticker_brands": {
+          "type": "text",
+          "settings": {
+            "text": "<p>✦ Brillo ✦ Tinyl ✦ CoolGeek ✦ Wax Aux</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "1.25rem",
+            "line_height": "tight",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "text_color": "#FFFFFF",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": ["text_ticker_brands"],
+      "settings": {
+        "movement_direction": "reverse",
+        "background_color": "#111111",
+        "padding-block-start": 11,
+        "padding-block-end": 11,
+        "gap_between_elements": 36
+      }
+    },
+    "product_list_moving_fastest": {
       "type": "product-list",
       "blocks": {
         "static-header": {
           "type": "_product-list-content",
-          "name": "t:names.header",
+          "name": "Header",
           "static": true,
           "settings": {
             "content_direction": "row",
@@ -123,20 +299,20 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "product_list_text_YFtzcL": {
+            "product_list_text_moving": {
               "type": "_product-list-text",
-              "name": "t:names.collection_title",
+              "name": "Title",
               "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
+                "text": "<h3>Moving fastest</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "h4",
-                "font": "var(--font-body--family)",
+                "font": "var(--font-heading--family)",
                 "font_size": "",
                 "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
+                "letter_spacing": "loose",
+                "case": "uppercase",
                 "wrap": "pretty",
                 "background": false,
                 "background_color": "#00000026",
@@ -148,11 +324,11 @@
               },
               "blocks": {}
             },
-            "product_list_button_MWeP9V": {
+            "product_list_button_all": {
               "type": "_product-list-button",
-              "name": "t:names.product_list_button",
+              "name": "View all",
               "settings": {
-                "label": "View all",
+                "label": "All best sellers",
                 "open_in_new_tab": false,
                 "style_class": "button-unstyled",
                 "width": "fit-content",
@@ -163,17 +339,14 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "product_list_text_YFtzcL",
-            "product_list_button_MWeP9V"
-          ]
+          "block_order": ["product_list_text_moving", "product_list_button_all"]
         },
         "static-product-card": {
           "type": "_product-card",
-          "name": "t:names.product_card",
+          "name": "Product card",
           "static": true,
           "settings": {
-            "product_card_gap": 4,
+            "product_card_gap": 8,
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
@@ -184,12 +357,12 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "product_card_gallery_677WP3": {
+            "product_card_gallery_moving": {
               "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
+              "name": "Media",
               "settings": {
-                "image_ratio": "adapt",
-                "border": "none",
+                "image_ratio": "square",
+                "border": "solid",
                 "border_width": 1,
                 "border_opacity": 100,
                 "border_radius": 0,
@@ -200,9 +373,9 @@
               },
               "blocks": {}
             },
-            "product_title_YXxMTj": {
+            "product_title_moving": {
               "type": "product-title",
-              "name": "t:names.product_title",
+              "name": "Title",
               "settings": {
                 "width": "100%",
                 "max_width": "normal",
@@ -217,16 +390,16 @@
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
-                "padding-block-start": 4,
+                "padding-block-start": 8,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
               "blocks": {}
             },
-            "price_JQzVV4": {
+            "price_moving": {
               "type": "price",
-              "name": "t:names.product_price",
+              "name": "Price",
               "settings": {
                 "show_sale_price_first": true,
                 "show_installments": false,
@@ -239,7 +412,7 @@
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
-                "padding-block-start": 0,
+                "padding-block-start": 4,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
@@ -247,36 +420,121 @@
               "blocks": {}
             }
           },
-          "block_order": [
-            "product_card_gallery_677WP3",
-            "product_title_YXxMTj",
-            "price_JQzVV4"
-          ]
+          "block_order": ["product_card_gallery_moving", "product_title_moving", "price_moving"]
         }
       },
-      "name": "t:names.featured_collection",
+      "name": "Product list — best sellers",
       "settings": {
         "collection": "all",
         "layout_type": "grid",
-        "carousel_on_mobile": false,
-        "max_products": 8,
+        "carousel_on_mobile": true,
+        "max_products": 4,
         "columns": 4,
         "mobile_columns": "2",
         "mobile_card_size": "60cqw",
-        "columns_gap": 8,
+        "columns_gap": 16,
         "rows_gap": 24,
         "icons_style": "arrow",
         "icons_shape": "none",
         "section_width": "page-width",
         "horizontal_alignment": "flex-start",
         "gap": 28,
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "padding-block-start": 44,
+        "padding-block-end": 44
+      }
+    },
+    "media_with_content_guide": {
+      "type": "media-with-content",
+      "name": "Guide callout",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true,
+          "settings": {
+            "media_type": "image"
+          }
+        },
+        "content": {
+          "type": "_content-without-appearance",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "space-between"
+          },
+          "blocks": {
+            "caption": {
+              "type": "text",
+              "name": "Caption",
+              "settings": {
+                "text": "<p>Guide 01</p>",
+                "type_preset": "custom",
+                "font": "var(--font-accent--family)",
+                "font_size": "0.75rem",
+                "case": "uppercase",
+                "letter_spacing": "loose"
+              }
+            },
+            "group": {
+              "type": "group",
+              "settings": {
+                "height": "fit"
+              },
+              "blocks": {
+                "heading": {
+                  "type": "text",
+                  "name": "Heading",
+                  "settings": {
+                    "text": "<p>Which sleeve for which record?</p>",
+                    "type_preset": "h3",
+                    "case": "uppercase"
+                  }
+                },
+                "text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Inner vs. outer, gauge, and why rice paper is still worth it. Two minutes, written by the people who pack your order.</p>",
+                    "max_width": "narrow",
+                    "type_preset": "rte"
+                  }
+                }
+              },
+              "block_order": ["heading", "text"]
+            },
+            "button": {
+              "type": "button",
+              "settings": {
+                "label": "Read it",
+                "link": "shopify://pages",
+                "style_class": "button-custom",
+                "custom_button_background": "#111111",
+                "custom_button_text": "#6FDDA0",
+                "custom_button_border": "#111111"
+              }
+            }
+          },
+          "block_order": ["caption", "group", "button"]
+        }
+      },
+      "block_order": ["media", "content"],
+      "settings": {
+        "media_position": "right",
+        "media_width": "medium",
+        "media_height": "60svh",
+        "section_width": "full-width",
+        "extend_media": true,
+        "background_color": "#6FDDA0",
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     }
   },
   "order": [
-    "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "marquee_top",
+    "hero_waxaux",
+    "stat_badge_reviews",
+    "shop_the_shelf",
+    "marquee_brands",
+    "product_list_moving_fastest",
+    "media_with_content_guide"
   ]
 }

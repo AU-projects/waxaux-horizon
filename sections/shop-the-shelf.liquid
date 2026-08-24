@@ -1,0 +1,329 @@
+{% comment %}
+  Numbered category list — editorial routing block for the homepage.
+  Each block is one row: index number, category name, short description or item count, and a link.
+{% endcomment %}
+
+{% liquid
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+%}
+
+<div
+  class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+<div
+  class="shop-the-shelf section spacing-style{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}{% if section.settings.section_width == 'page-width' %} page-width{% endif %}"
+  style="{% render 'spacing-style', settings: section.settings %}"
+>
+  {%- if section.settings.heading != blank or section.settings.eyebrow != blank -%}
+    <div class="shop-the-shelf__header">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="shop-the-shelf__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="shop-the-shelf__eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="shop-the-shelf__list">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'category' -%}
+        <a
+          href="{{ block.settings.url | default: '#' }}"
+          class="shop-the-shelf__row{% if block.settings.highlight %} shop-the-shelf__row--highlight{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          <span class="shop-the-shelf__index">
+            <span class="shop-the-shelf__index-inner">{{ forloop.index | prepend: '00' | slice: -2, 2 }}</span>
+          </span>
+          <span class="shop-the-shelf__name">{{ block.settings.title }}</span>
+          {%- if block.settings.description != blank -%}
+            <span class="shop-the-shelf__desc">{{ block.settings.description }}</span>
+          {%- endif -%}
+          {%- if block.settings.swatch_image != blank -%}
+            <span class="shop-the-shelf__swatches">
+              {%- for i in (1..2) -%}
+                <span class="shop-the-shelf__swatch">
+                  {{ block.settings.swatch_image | image_url: width: 200 | image_tag: loading: 'lazy', sizes: '80px', widths: '80,160,200' }}
+                </span>
+              {%- endfor -%}
+            </span>
+          {%- endif -%}
+          {%- if block.settings.item_count != blank -%}
+            <span class="shop-the-shelf__count">{{ block.settings.item_count }} →</span>
+          {%- endif -%}
+        </a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .shop-the-shelf {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .shop-the-shelf__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--color-foreground, #111);
+    margin-bottom: 0;
+  }
+
+  .shop-the-shelf__heading {
+    font: 700 15px/1 var(--font-heading--family, sans-serif);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .shop-the-shelf__eyebrow {
+    font: 500 11px var(--font-accent--family, monospace);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, currentColor 60%, transparent);
+  }
+
+  .shop-the-shelf__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .shop-the-shelf__row {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    padding: 22px 4px;
+    border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.15s ease;
+  }
+
+  .shop-the-shelf__row--highlight {
+    background: var(--waxaux-mint, #6fdda0);
+    border-bottom: 1px solid var(--color-foreground, #111);
+    margin-inline: -4px;
+    padding-inline: 32px;
+  }
+
+  .shop-the-shelf__row:hover {
+    background: color-mix(in srgb, var(--waxaux-mint, #6fdda0) 30%, transparent);
+  }
+
+  .shop-the-shelf__index {
+    flex: none;
+  }
+
+  .shop-the-shelf__index-inner {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 999px;
+    border: 2px solid currentColor;
+    font: 700 18px var(--font-heading--family, sans-serif);
+  }
+
+  .shop-the-shelf__row--highlight .shop-the-shelf__index-inner {
+    background: var(--color-foreground, #111);
+    color: var(--waxaux-mint, #6fdda0);
+    border-color: var(--color-foreground, #111);
+  }
+
+  .shop-the-shelf__name {
+    font: 700 clamp(20px, 2.4vw, 30px) var(--font-heading--family, sans-serif);
+    text-transform: uppercase;
+    letter-spacing: 0.012em;
+    flex: 1;
+  }
+
+  .shop-the-shelf__desc {
+    font: 400 13px var(--font-body--family, sans-serif);
+    color: color-mix(in srgb, currentColor 60%, transparent);
+    max-width: 30ch;
+  }
+
+  .shop-the-shelf__swatches {
+    display: flex;
+    gap: 8px;
+  }
+
+  .shop-the-shelf__swatch {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border: 1.5px solid var(--color-foreground, #111);
+  }
+
+  .shop-the-shelf__swatch img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .shop-the-shelf__count {
+    flex: none;
+    font: 500 12px var(--font-accent--family, monospace);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    min-width: 80px;
+    text-align: right;
+  }
+
+  @media screen and (max-width: 749px) {
+    .shop-the-shelf__row {
+      gap: 14px;
+      padding: 16px 4px;
+    }
+
+    .shop-the-shelf__index-inner {
+      width: 36px;
+      height: 36px;
+      font-size: 15px;
+    }
+
+    .shop-the-shelf__name {
+      font-size: clamp(18px, 5vw, 22px);
+    }
+
+    .shop-the-shelf__desc,
+    .shop-the-shelf__swatches {
+      display: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Shop the shelf",
+  "tag": "section",
+  "class": "section-shop-the-shelf",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop the shelf"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow (right-aligned)",
+      "default": "04 categories"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Section width",
+      "options": [
+        { "value": "page-width", "label": "Page width" },
+        { "value": "full-width", "label": "Full width" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "placeholder": "Default"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Category name"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": ""
+        },
+        {
+          "type": "text",
+          "id": "item_count",
+          "label": "Item count label",
+          "default": "0 items"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "swatch_image",
+          "label": "Thumbnail (used only on the first / highlighted row)"
+        },
+        {
+          "type": "checkbox",
+          "id": "highlight",
+          "label": "Highlight this row (mint background)",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop the shelf",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": { "title": "Sleeves & Storage", "item_count": "48 items", "highlight": true }
+        },
+        {
+          "type": "category",
+          "settings": { "title": "Cleaning", "description": "Fluids, brushes, full kits", "item_count": "31 items" }
+        },
+        {
+          "type": "category",
+          "settings": { "title": "Turntables & Hardware", "description": "Clamps, weights, belts, styli", "item_count": "22 items" }
+        },
+        {
+          "type": "category",
+          "settings": { "title": "Slipmats", "description": "Felt, cork, acrylic", "item_count": "17 items" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

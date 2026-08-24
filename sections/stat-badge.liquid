@@ -1,0 +1,153 @@
+{% comment %}
+  Small rotated circular stat badge (e.g. "4.8★ 2,140 reviews"), meant to be stacked
+  directly under a hero/media section and pulled up over its corner with negative margin.
+{% endcomment %}
+
+<div
+  class="stat-badge-wrap section{% if section.settings.pull_up %} stat-badge-wrap--pulled{% endif %}"
+  style="--stat-badge-pull: {{ section.settings.pull_up_amount }}px; justify-content: {{ section.settings.horizontal_position }};"
+>
+  <div
+    class="stat-badge"
+    style="
+      --stat-badge-rotation: {{ section.settings.rotation }}deg;
+      width: {{ section.settings.size }}px;
+      height: {{ section.settings.size }}px;
+      background: {{ section.settings.background_color }};
+      color: {{ section.settings.text_color }};
+      transform: rotate(var(--stat-badge-rotation));
+    "
+  >
+    <span class="stat-badge__line1">{{ section.settings.line_1 }}</span>
+    <span class="stat-badge__line2">{{ section.settings.line_2 }}</span>
+  </div>
+</div>
+
+{% stylesheet %}
+  .stat-badge-wrap {
+    display: flex;
+    padding-inline: 5%;
+    pointer-events: none;
+  }
+
+  .stat-badge-wrap--pulled {
+    margin-top: calc(var(--stat-badge-pull) * -1px);
+    position: relative;
+    z-index: 3;
+  }
+
+  .stat-badge {
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    font-family: var(--font-heading--family, sans-serif);
+    line-height: 1.15;
+    flex: none;
+  }
+
+  .stat-badge__line1 {
+    display: block;
+    font-weight: 700;
+    font-size: 1.05em;
+  }
+
+  .stat-badge__line2 {
+    display: block;
+    font-weight: 700;
+    font-size: 0.8em;
+    text-transform: uppercase;
+  }
+
+  @media screen and (max-width: 749px) {
+    .stat-badge {
+      transform: rotate(var(--stat-badge-rotation)) scale(0.72);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Stat badge",
+  "tag": "section",
+  "class": "section-stat-badge",
+  "settings": [
+    {
+      "type": "text",
+      "id": "line_1",
+      "label": "Line 1",
+      "default": "4.8★"
+    },
+    {
+      "type": "text",
+      "id": "line_2",
+      "label": "Line 2",
+      "default": "2,140 reviews"
+    },
+    {
+      "type": "range",
+      "id": "size",
+      "label": "Diameter",
+      "min": 60,
+      "max": 160,
+      "step": 2,
+      "unit": "px",
+      "default": 104
+    },
+    {
+      "type": "range",
+      "id": "rotation",
+      "label": "Rotation",
+      "min": -30,
+      "max": 30,
+      "step": 1,
+      "unit": "deg",
+      "default": -11
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#6FDDA0"
+    },
+    {
+      "type": "select",
+      "id": "horizontal_position",
+      "label": "Horizontal position",
+      "options": [
+        { "value": "flex-start", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "flex-end", "label": "Right" }
+      ],
+      "default": "flex-end"
+    },
+    {
+      "type": "checkbox",
+      "id": "pull_up",
+      "label": "Pull up over the section above",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "pull_up_amount",
+      "label": "Pull-up amount",
+      "min": 0,
+      "max": 300,
+      "step": 4,
+      "unit": "px",
+      "default": 150
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stat badge"
+    }
+  ]
+}
+{% endschema %}
