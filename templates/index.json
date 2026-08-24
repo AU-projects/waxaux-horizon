@@ -179,6 +179,7 @@
     },
     "stat_badge_reviews": {
       "type": "stat-badge",
+      "disabled": true,
       "name": "Review badge",
       "settings": {
         "line_1": "4.8★",
