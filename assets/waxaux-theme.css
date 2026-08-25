@@ -84,10 +84,107 @@ button[name="add"].button {
   text-decoration: none;
 }
 
-/* Footer: uppercase nav labels, mint section headers when on a dark background */
+/* ── Announcement bar ───────────────────────────────────────────── */
+/* Force mint text on the black ticker; Horizon's contrast-override
+   would default to white, but the design specifies mint. */
+.announcement-bar,
+.announcement-bar a,
+.announcement-bar__text {
+  color: var(--waxaux-mint) !important;
+}
+
+/* ── Header nav ────────────────────────────────────────────────── */
+/* Uppercase, tracked, 600-weight links matching design 2a/2b. */
+.header__links .header__link,
+.header__links .link {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+/* Active/hover underline accent — matches design's 3px mint underline on active nav. */
+.header__links .header__link[aria-current="page"],
+.header__links .header__link:hover {
+  text-decoration: none;
+  border-bottom: 3px solid var(--waxaux-ink);
+  padding-bottom: 2px;
+}
+
+/* ── Footer ─────────────────────────────────────────────────────── */
+/* Uppercase nav headings (Shop / Help), mint colour on dark background. */
 #footer .footer-block__heading,
 #footer-utilities .footer-block__heading {
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-size: 0.7em;
+  font-size: 0.65rem;
+  color: var(--waxaux-mint);
+}
+
+/* Footer menu link colours on dark bg. */
+#footer .footer-block__link,
+#footer .footer__link {
+  color: #a3a29c;
+}
+
+#footer .footer-block__link:hover,
+#footer .footer__link:hover {
+  color: #ffffff;
+}
+
+/* Footer utilities (copyright / policy) on dark bg. */
+#footer-utilities,
+#footer-utilities a {
+  color: #6f6e69;
+}
+
+/* ── Collection — price chip on product cards ──────────────────── */
+/* Mint chip pinned bottom-right of the card image, matching design 2b. */
+.product-card .price {
+  position: relative;
+}
+
+/* ── Product cards ─────────────────────────────────────────────── */
+/* Hard-edged with no rounded corners. */
+.product-card {
+  --product-card-corner-radius: 0;
+}
+
+.product-card__link:hover .price .price-item__group {
+  text-decoration: none;
+}
+
+/* ── Collection filter bar ─────────────────────────────────────── */
+/* Sort label underline accent, matching design 2b. */
+.sorting-filter__option[aria-selected="true"] .sorting-filter__label {
+  text-transform: uppercase;
+  border-bottom: 3px solid var(--waxaux-mint);
+  padding-bottom: 2px;
+}
+
+/* ── Collection header slab ────────────────────────────────────── */
+/* Waveform decorative bars inside the mint collection header, matching design 2b.
+   Rendered as a pseudo-element after the breadcrumb, matching the 5-bar pattern. */
+.collection-header__waveform {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  margin-top: 16px;
+}
+
+.collection-header__waveform span {
+  display: block;
+  width: 8px;
+  background: var(--waxaux-ink);
+  border-radius: 4px;
+}
+
+/* ── "Load more" button ─────────────────────────────────────────── */
+/* Pill shape, inverted, matching design 2b's "Load 24 more" button. */
+.pagination__load-more .button,
+.pagination .button {
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-weight: 700;
 }
