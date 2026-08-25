@@ -339,6 +339,7 @@
     },
     "stat_badge_reviews": {
       "type": "stat-badge",
+      "disabled": true,
       "name": "Review badge",
       "settings": {
         "line_1": "4.8★",
@@ -359,8 +360,8 @@
         "bar_pattern": "9,22,38,54,38,22,9",
         "bar_color": "#111111",
         "background_color": "#6fdda0",
-        "padding-block-start": 0,
-        "padding-block-end": 16
+        "padding-block-start": 10,
+        "padding-block-end": 10
       }
     },
     "shop_the_shelf": {
@@ -371,10 +372,10 @@
           "settings": {
             "title": "Sleeves & Storage",
             "description": "Inner, outer, crates and dividers — 7″, 10″, 12″",
-            "url": "shopify://collections/all",
+            "url": "shopify://collections/sleeves-storage",
             "cta_label": "Shop",
-            "image": "shopify://shop_images/waxaux_icon_43110edd-fbee-465d-87fa-061c5ed81115.png",
-            "highlight": true
+            "image": "shopify://shop_images/MjEtODkyNy5qcGVn.jpg",
+            "highlight": false
           }
         },
         "cat_cleaning": {
