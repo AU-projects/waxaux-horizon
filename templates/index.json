@@ -316,8 +316,9 @@
           "type": "category",
           "settings": {
             "title": "Sleeves & Storage",
-            "description": "",
+            "description": "Inner, outer, crates and dividers — 7″, 10″, 12″",
             "url": "shopify://collections/all",
+            "cta_label": "Shop",
             "highlight": true
           }
         },
@@ -325,8 +326,9 @@
           "type": "category",
           "settings": {
             "title": "Cleaning",
-            "description": "Fluids, brushes, full kits — Brillo and Tinyl",
+            "description": "Fluids, brushes and full kits from Brillo and Tinyl",
             "url": "shopify://collections/all",
+            "cta_label": "Shop",
             "highlight": false
           }
         },
@@ -334,8 +336,9 @@
           "type": "category",
           "settings": {
             "title": "Turntables & Hardware",
-            "description": "Clamps, weights, belts, styli",
+            "description": "Clamps, weights, belts and styli",
             "url": "shopify://collections/all",
+            "cta_label": "Shop",
             "highlight": false
           }
         },
@@ -343,8 +346,9 @@
           "type": "category",
           "settings": {
             "title": "Slipmats",
-            "description": "Felt, cork, acrylic",
+            "description": "Felt, cork and acrylic, 3mm and up",
             "url": "shopify://collections/all",
+            "cta_label": "Shop",
             "highlight": false
           }
         }
@@ -358,10 +362,10 @@
       "name": "Shop the shelf",
       "settings": {
         "heading": "Shop the shelf",
-        "eyebrow": "04 categories",
+        "eyebrow": "Four ways in",
         "section_width": "page-width",
         "padding-block-start": 44,
-        "padding-block-end": 20
+        "padding-block-end": 0
       }
     },
     "marquee_brands": {
