@@ -317,9 +317,10 @@
         "section_width": "full-width",
         "section_height": "medium",
         "section_height_custom": 55,
-        "background_media": "none",
+        "background_media": "image",
         "background_color": "#6fdda0",
         "video_position": "cover",
+        "background_image": "shopify://shop_images/media-entertainment-minimal-5.jpg",
         "background_image_position": "cover",
         "toggle_overlay": false,
         "overlay_color": "rgba(0,0,0,0)",
@@ -332,21 +333,6 @@
         "border_radius": 0,
         "padding-block-start": 56,
         "padding-block-end": 0
-      }
-    },
-    "stat_badge_reviews": {
-      "type": "stat-badge",
-      "name": "Review badge",
-      "settings": {
-        "line_1": "4.8★",
-        "line_2": "2,140 reviews",
-        "size": 100,
-        "rotation": -11,
-        "background_color": "#111111",
-        "text_color": "#6fdda0",
-        "horizontal_position": "flex-end",
-        "pull_up": true,
-        "pull_up_amount": 148
       }
     },
     "waveform_divider_top": {
@@ -452,6 +438,7 @@
       "block_order": [
         "text_ticker_brands"
       ],
+      "disabled": true,
       "name": "Ticker — brands",
       "settings": {
         "movement_direction": "reverse",
@@ -668,6 +655,7 @@
           "static": true,
           "settings": {
             "media_type": "image",
+            "image": "shopify://shop_images/media-entertainment-minimal-3.jpg",
             "link": "",
             "video_loop": true,
             "video_autoplay": false,
@@ -849,7 +837,6 @@
   "order": [
     "marquee_top",
     "hero_waxaux",
-    "stat_badge_reviews",
     "waveform_divider_top",
     "shop_the_shelf",
     "marquee_brands",
