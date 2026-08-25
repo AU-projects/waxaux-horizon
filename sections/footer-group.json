@@ -55,11 +55,6 @@
               "type": "logo",
               "name": "Logo",
               "settings": {
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100,
-                "logo_width": 140,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
