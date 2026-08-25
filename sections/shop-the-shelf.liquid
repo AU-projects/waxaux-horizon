@@ -1,6 +1,7 @@
 {% comment %}
-  Numbered category list — editorial routing block for the homepage.
-  Each block is one row: index number, category name, optional short description, and a link.
+  Category card grid — editorial routing block for the homepage.
+  Each block is one card: bottom-rounded "U-stroke" image tile, title, short
+  description, and a "Shop" pill button. First card can be highlighted mint.
 {% endcomment %}
 
 {% liquid
@@ -27,32 +28,30 @@
     </div>
   {%- endif -%}
 
-  <div class="shop-the-shelf__list">
+  <div class="shop-the-shelf__grid">
     {%- for block in section.blocks -%}
       {%- if block.type == 'category' -%}
-        <a
-          href="{{ block.settings.url | default: '#' }}"
-          class="shop-the-shelf__row{% if block.settings.highlight %} shop-the-shelf__row--highlight{% endif %}"
+        <div
+          class="shop-the-shelf__card{% if block.settings.highlight %} shop-the-shelf__card--highlight{% endif %}"
           {{ block.shopify_attributes }}
         >
-          <span class="shop-the-shelf__index">
-            <span class="shop-the-shelf__index-inner">{{ forloop.index | prepend: '00' | slice: -2, 2 }}</span>
-          </span>
-          <span class="shop-the-shelf__name">{{ block.settings.title }}</span>
-          {%- if block.settings.description != blank -%}
-            <span class="shop-the-shelf__desc">{{ block.settings.description }}</span>
-          {%- endif -%}
-          {%- if block.settings.swatch_image != blank -%}
-            <span class="shop-the-shelf__swatches">
-              {%- for i in (1..2) -%}
-                <span class="shop-the-shelf__swatch">
-                  {{ block.settings.swatch_image | image_url: width: 200 | image_tag: loading: 'lazy', sizes: '80px', widths: '80,160,200' }}
-                </span>
-              {%- endfor -%}
-            </span>
-          {%- endif -%}
-          <span class="shop-the-shelf__count" aria-hidden="true">→</span>
-        </a>
+          <div class="shop-the-shelf__tile">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 25vw, 90vw', widths: '300,450,600', class: 'shop-the-shelf__tile-img' }}
+            {%- else -%}
+              <span class="shop-the-shelf__tile-placeholder">Category photo</span>
+            {%- endif -%}
+          </div>
+          <div class="shop-the-shelf__body">
+            <div class="shop-the-shelf__name">{{ block.settings.title }}</div>
+            {%- if block.settings.description != blank -%}
+              <p class="shop-the-shelf__desc">{{ block.settings.description }}</p>
+            {%- endif -%}
+            <a href="{{ block.settings.url | default: '#' }}" class="shop-the-shelf__cta">
+              {{ block.settings.cta_label | default: 'Shop' }}
+            </a>
+          </div>
+        </div>
       {%- endif -%}
     {%- endfor -%}
   </div>
@@ -88,113 +87,139 @@
     color: color-mix(in srgb, currentColor 60%, transparent);
   }
 
-  .shop-the-shelf__list {
+  .shop-the-shelf__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 2px solid var(--color-foreground, #111);
+  }
+
+  .shop-the-shelf__card {
     display: flex;
     flex-direction: column;
+    background: var(--color-background, #fff);
+    border-right: 2px solid var(--color-foreground, #111);
   }
 
-  .shop-the-shelf__row {
-    display: flex;
-    align-items: center;
-    gap: 26px;
-    padding: 22px 4px;
-    border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
-    text-decoration: none;
-    color: inherit;
-    transition: background-color 0.15s ease;
+  .shop-the-shelf__card:last-child {
+    border-right: none;
   }
 
-  .shop-the-shelf__row--highlight {
+  .shop-the-shelf__card--highlight {
     background: var(--waxaux-mint, #6fdda0);
-    border-bottom: 1px solid var(--color-foreground, #111);
-    margin-inline: -4px;
-    padding-inline: 32px;
   }
 
-  .shop-the-shelf__row:hover {
-    background: color-mix(in srgb, var(--waxaux-mint, #6fdda0) 30%, transparent);
-  }
-
-  .shop-the-shelf__index {
-    flex: none;
-  }
-
-  .shop-the-shelf__index-inner {
+  .shop-the-shelf__tile {
+    height: 170px;
+    margin: 16px 16px 0;
+    border: 2px solid var(--color-foreground, #111);
+    border-radius: 0 0 70px 70px;
+    background: repeating-linear-gradient(135deg, #e8e6e1 0 7px, #f3f2ee 7px 14px);
     display: grid;
     place-items: center;
-    width: 46px;
-    height: 46px;
-    border-radius: 999px;
-    border: 2px solid currentColor;
-    font: 700 18px var(--font-heading--family, sans-serif);
-  }
-
-  .shop-the-shelf__row--highlight .shop-the-shelf__index-inner {
-    background: var(--color-foreground, #111);
-    color: var(--waxaux-mint, #6fdda0);
-    border-color: var(--color-foreground, #111);
-  }
-
-  .shop-the-shelf__name {
-    font: 700 clamp(20px, 2.4vw, 30px) var(--font-heading--family, sans-serif);
-    text-transform: uppercase;
-    letter-spacing: 0.012em;
-    flex: 1;
-  }
-
-  .shop-the-shelf__desc {
-    font: 400 13px var(--font-body--family, sans-serif);
-    color: color-mix(in srgb, currentColor 60%, transparent);
-    max-width: 30ch;
-  }
-
-  .shop-the-shelf__swatches {
-    display: flex;
-    gap: 8px;
-  }
-
-  .shop-the-shelf__swatch {
-    width: 60px;
-    height: 60px;
     overflow: hidden;
-    border: 1.5px solid var(--color-foreground, #111);
   }
 
-  .shop-the-shelf__swatch img {
+  .shop-the-shelf__card--highlight .shop-the-shelf__tile {
+    background: repeating-linear-gradient(135deg, #5ac68e 0 7px, #7fe6ab 7px 14px);
+  }
+
+  .shop-the-shelf__tile-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
   }
 
-  .shop-the-shelf__count {
-    flex: none;
-    font: 500 12px var(--font-accent--family, monospace);
+  .shop-the-shelf__tile-placeholder {
+    font: 500 9.5px var(--font-accent--family, monospace);
     text-transform: uppercase;
-    letter-spacing: 0.02em;
-    min-width: 80px;
-    text-align: right;
+    letter-spacing: 0.04em;
+    color: #8a8a85;
+    background: #fff;
+    border: 1.5px solid transparent;
+    padding: 3px 8px;
+  }
+
+  .shop-the-shelf__card--highlight .shop-the-shelf__tile-placeholder {
+    color: var(--color-foreground, #111);
+    background: var(--waxaux-mint, #6fdda0);
+    border-color: var(--color-foreground, #111);
+  }
+
+  .shop-the-shelf__body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .shop-the-shelf__name {
+    font: 700 21px/1.08 var(--font-heading--family, sans-serif);
+    letter-spacing: 0.012em;
+    text-transform: uppercase;
+  }
+
+  .shop-the-shelf__desc {
+    font: 400 12px/1.5 var(--font-body--family, sans-serif);
+    color: #6f6e69;
+    flex: 1;
+    margin: 0;
+  }
+
+  .shop-the-shelf__card--highlight .shop-the-shelf__desc {
+    color: #1e3d2c;
+  }
+
+  .shop-the-shelf__cta {
+    align-self: flex-start;
+    margin-top: 4px;
+    padding: 9px 18px;
+    border-radius: 999px;
+    border: 2px solid var(--color-foreground, #111);
+    background: transparent;
+    color: var(--color-foreground, #111);
+    font: 700 10.5px var(--font-heading--family, sans-serif);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+  }
+
+  .shop-the-shelf__cta:hover {
+    opacity: 0.75;
+  }
+
+  .shop-the-shelf__card--highlight .shop-the-shelf__cta {
+    background: var(--color-foreground, #111);
+    color: var(--waxaux-mint, #6fdda0);
+  }
+
+  @media screen and (max-width: 989px) {
+    .shop-the-shelf__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .shop-the-shelf__card:nth-child(2) {
+      border-right: none;
+    }
+
+    .shop-the-shelf__card:nth-child(n + 3) {
+      border-top: 2px solid var(--color-foreground, #111);
+    }
   }
 
   @media screen and (max-width: 749px) {
-    .shop-the-shelf__row {
-      gap: 14px;
-      padding: 16px 4px;
+    .shop-the-shelf__grid {
+      grid-template-columns: 1fr;
     }
 
-    .shop-the-shelf__index-inner {
-      width: 36px;
-      height: 36px;
-      font-size: 15px;
+    .shop-the-shelf__card {
+      border-right: none;
     }
 
-    .shop-the-shelf__name {
-      font-size: clamp(18px, 5vw, 22px);
-    }
-
-    .shop-the-shelf__desc,
-    .shop-the-shelf__swatches {
-      display: none;
+    .shop-the-shelf__card:not(:first-child) {
+      border-top: 2px solid var(--color-foreground, #111);
     }
   }
 {% endstylesheet %}
@@ -215,7 +240,7 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow (right-aligned)",
-      "default": "04 categories"
+      "default": "Four ways in"
     },
     {
       "type": "select",
@@ -255,7 +280,7 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 48
+      "default": 0
     }
   ],
   "blocks": [
@@ -280,14 +305,20 @@
           "label": "Link"
         },
         {
+          "type": "text",
+          "id": "cta_label",
+          "label": "Button label",
+          "default": "Shop"
+        },
+        {
           "type": "image_picker",
-          "id": "swatch_image",
-          "label": "Thumbnail (used only on the first / highlighted row)"
+          "id": "image",
+          "label": "Category photo"
         },
         {
           "type": "checkbox",
           "id": "highlight",
-          "label": "Highlight this row (mint background)",
+          "label": "Highlight this card (mint background)",
           "default": false
         }
       ]
@@ -299,19 +330,23 @@
       "blocks": [
         {
           "type": "category",
-          "settings": { "title": "Sleeves & Storage", "highlight": true }
+          "settings": {
+            "title": "Sleeves & Storage",
+            "description": "Inner, outer, crates and dividers — 7″, 10″, 12″",
+            "highlight": true
+          }
         },
         {
           "type": "category",
-          "settings": { "title": "Cleaning", "description": "Fluids, brushes, full kits" }
+          "settings": { "title": "Cleaning", "description": "Fluids, brushes and full kits from Brillo and Tinyl" }
         },
         {
           "type": "category",
-          "settings": { "title": "Turntables & Hardware", "description": "Clamps, weights, belts, styli" }
+          "settings": { "title": "Turntables & Hardware", "description": "Clamps, weights, belts and styli" }
         },
         {
           "type": "category",
-          "settings": { "title": "Slipmats", "description": "Felt, cork, acrylic" }
+          "settings": { "title": "Slipmats", "description": "Felt, cork and acrylic, 3mm and up" }
         }
       ]
     }
