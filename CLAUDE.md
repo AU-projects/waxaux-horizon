@@ -54,6 +54,12 @@ locales/      # stringhe di traduzione (en.default.json, it.json, ecc.)
 - JS: Horizon usa web components nativi (custom elements) per l'interattività — seguire questo pattern invece di introdurre jQuery o framework esterni.
 - Non toccare `config/settings_data.json` a mano: è lo stato salvato dall'editor tema (font, colori, logo scelti dal merchant), va lasciato gestire da Shopify. Questo vale anche per i push via `shopify theme push`: **escludere sempre `config/settings_data.json`** con `--ignore="config/settings_data.json"`, altrimenti un push sovrascrive silenziosamente le impostazioni salvate dall'editor.
 
+## ⚠️ Non sovrascrivere le modifiche fatte nel theme editor
+
+Il merchant può modificare **qualsiasi** file tema dall'editor Shopify online (non solo font/colori in `settings_data.json` — anche testi, layout e impostazioni dentro `templates/*.json` quando trascina/modifica blocchi). Queste modifiche vengono sincronizzate verso GitHub automaticamente (commit `"Update from Shopify for theme..."`), ma **solo dopo** che Shopify le processa — se nel frattempo pushi da un checkout locale non aggiornato, il push sovrascrive silenziosamente quel lavoro, senza errori, senza conflitti visibili.
+
+Regola pratica: **fare sempre `git pull origin main` prima di iniziare a modificare file del tema**, e di nuovo **subito prima di ogni `shopify theme push`**. Usare `scripts/safe-theme-push.sh <store> <theme-id>` invece di chiamare `shopify theme push` a mano — fa pull-prima, push con l'`--ignore` corretto, e pull-dopo per assorbire il commit di sync automaticamente, nell'ordine giusto.
+
 ## Workflow git
 
 - Branch `main` collegato al tema in bozza su Shopify — ogni push sincronizza automaticamente in entrambe le direzioni (Shopify ripubblica su GitHub commit "Update from Shopify for theme..." dopo ogni sync riuscita). Prima di pushare, fare `git pull` per integrare questi commit.
@@ -64,9 +70,9 @@ locales/      # stringhe di traduzione (en.default.json, it.json, ecc.)
 ## Comandi utili
 
 ```bash
-shopify theme dev                                                              # anteprima live con hot-reload
-shopify theme push --store <store> --theme=<id> --ignore="config/settings_data.json"   # push diretto al tema (bypassa la sync GitHub se serve debug rapido)
-shopify theme check                                                            # linter Liquid ufficiale — eseguire prima di ogni push importante
+shopify theme dev                                          # anteprima live con hot-reload
+scripts/safe-theme-push.sh <store> <theme-id>               # modo sicuro per pushare: pull → check → push (con --ignore settings_data.json) → pull → git push
+shopify theme check                                         # linter Liquid ufficiale — eseguire prima di ogni push importante
 ```
 
 ## Cosa NON fare
