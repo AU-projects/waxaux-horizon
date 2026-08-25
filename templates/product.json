@@ -273,10 +273,7 @@
                   "blocks": {}
                 }
               },
-              "block_order": [
-                "quantity",
-                "add-to-cart"
-              ]
+              "block_order": []
             },
             "text_aEtTtq": {
               "type": "text",
