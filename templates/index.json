@@ -272,8 +272,8 @@
         "bar_pattern": "9,22,38,54,38,22,9",
         "bar_color": "#111111",
         "background_color": "#6fdda0",
-        "padding-block-start": 0,
-        "padding-block-end": 16
+        "padding-block-start": 15,
+        "padding-block-end": 15
       }
     },
     "shop_the_shelf": {
