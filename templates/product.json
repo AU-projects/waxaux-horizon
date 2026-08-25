@@ -275,8 +275,7 @@
               },
               "block_order": [
                 "quantity",
-                "add-to-cart",
-                "accelerated-checkout"
+                "add-to-cart"
               ]
             },
             "text_aEtTtq": {
