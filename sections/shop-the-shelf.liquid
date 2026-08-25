@@ -1,7 +1,7 @@
 {% comment %}
   Category card grid — editorial routing block for the homepage.
-  Each block is one card: bottom-rounded "U-stroke" image tile, title, short
-  description, and a "Shop" pill button. First card can be highlighted mint.
+  Each block is one card: square photo tile with a small mint accent dash,
+  title, short description, and a "Shop →" text link.
 {% endcomment %}
 
 {% liquid
@@ -31,15 +31,13 @@
   <div class="shop-the-shelf__grid">
     {%- for block in section.blocks -%}
       {%- if block.type == 'category' -%}
-        <div
-          class="shop-the-shelf__card{% if block.settings.highlight %} shop-the-shelf__card--highlight{% endif %}"
-          {{ block.shopify_attributes }}
-        >
+        <div class="shop-the-shelf__card" {{ block.shopify_attributes }}>
           <div class="shop-the-shelf__tile">
+            <span class="shop-the-shelf__dash" aria-hidden="true"></span>
             {%- if block.settings.image != blank -%}
               {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 25vw, 90vw', widths: '300,450,600', class: 'shop-the-shelf__tile-img' }}
             {%- else -%}
-              <span class="shop-the-shelf__tile-placeholder">Category photo</span>
+              <span class="shop-the-shelf__tile-placeholder">Square photo 1:1</span>
             {%- endif -%}
           </div>
           <div class="shop-the-shelf__body">
@@ -48,7 +46,8 @@
               <p class="shop-the-shelf__desc">{{ block.settings.description }}</p>
             {%- endif -%}
             <a href="{{ block.settings.url | default: '#' }}" class="shop-the-shelf__cta">
-              {{ block.settings.cta_label | default: 'Shop' }}
+              <span class="shop-the-shelf__cta-label">{{ block.settings.cta_label | default: 'Shop' }}</span>
+              <span class="shop-the-shelf__cta-arrow" aria-hidden="true">→</span>
             </a>
           </div>
         </div>
@@ -90,6 +89,8 @@
   .shop-the-shelf__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    padding: 24px 0 30px;
     border-bottom: 2px solid var(--color-foreground, #111);
   }
 
@@ -97,30 +98,27 @@
     display: flex;
     flex-direction: column;
     background: var(--color-background, #fff);
-    border-right: 2px solid var(--color-foreground, #111);
-  }
-
-  .shop-the-shelf__card:last-child {
-    border-right: none;
-  }
-
-  .shop-the-shelf__card--highlight {
-    background: var(--waxaux-mint, #6fdda0);
+    border: 2px solid var(--color-foreground, #111);
   }
 
   .shop-the-shelf__tile {
-    height: 170px;
-    margin: 16px 16px 0;
-    border: 2px solid var(--color-foreground, #111);
-    border-radius: 0 0 70px 70px;
+    aspect-ratio: 1;
     background: repeating-linear-gradient(135deg, #e8e6e1 0 7px, #f3f2ee 7px 14px);
+    border-bottom: 2px solid var(--color-foreground, #111);
     display: grid;
     place-items: center;
+    position: relative;
     overflow: hidden;
   }
 
-  .shop-the-shelf__card--highlight .shop-the-shelf__tile {
-    background: repeating-linear-gradient(135deg, #5ac68e 0 7px, #7fe6ab 7px 14px);
+  .shop-the-shelf__dash {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 22px;
+    height: 6px;
+    background: var(--waxaux-mint, #6fdda0);
+    border-radius: 999px;
   }
 
   .shop-the-shelf__tile-img {
@@ -136,62 +134,48 @@
     letter-spacing: 0.04em;
     color: #8a8a85;
     background: #fff;
-    border: 1.5px solid transparent;
     padding: 3px 8px;
-  }
-
-  .shop-the-shelf__card--highlight .shop-the-shelf__tile-placeholder {
-    color: var(--color-foreground, #111);
-    background: var(--waxaux-mint, #6fdda0);
-    border-color: var(--color-foreground, #111);
   }
 
   .shop-the-shelf__body {
     padding: 16px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 7px;
     flex: 1;
   }
 
   .shop-the-shelf__name {
-    font: 700 21px/1.08 var(--font-heading--family, sans-serif);
+    font: 700 18px/1.15 var(--font-heading--family, sans-serif);
     letter-spacing: 0.012em;
     text-transform: uppercase;
   }
 
   .shop-the-shelf__desc {
-    font: 400 12px/1.5 var(--font-body--family, sans-serif);
+    font: 400 12px/1.55 var(--font-body--family, sans-serif);
     color: #6f6e69;
     flex: 1;
     margin: 0;
   }
 
-  .shop-the-shelf__card--highlight .shop-the-shelf__desc {
-    color: #1e3d2c;
-  }
-
   .shop-the-shelf__cta {
-    align-self: flex-start;
-    margin-top: 4px;
-    padding: 9px 18px;
-    border-radius: 999px;
-    border: 2px solid var(--color-foreground, #111);
-    background: transparent;
-    color: var(--color-foreground, #111);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 2px;
     font: 700 10.5px var(--font-heading--family, sans-serif);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
-    transition: opacity 0.15s ease;
+    color: var(--color-foreground, #111);
   }
 
-  .shop-the-shelf__cta:hover {
-    opacity: 0.75;
+  .shop-the-shelf__cta-label {
+    border-bottom: 3px solid var(--waxaux-mint, #6fdda0);
+    padding-bottom: 2px;
   }
 
-  .shop-the-shelf__card--highlight .shop-the-shelf__cta {
-    background: var(--color-foreground, #111);
+  .shop-the-shelf__cta-arrow {
     color: var(--waxaux-mint, #6fdda0);
   }
 
@@ -199,27 +183,11 @@
     .shop-the-shelf__grid {
       grid-template-columns: repeat(2, 1fr);
     }
-
-    .shop-the-shelf__card:nth-child(2) {
-      border-right: none;
-    }
-
-    .shop-the-shelf__card:nth-child(n + 3) {
-      border-top: 2px solid var(--color-foreground, #111);
-    }
   }
 
   @media screen and (max-width: 749px) {
     .shop-the-shelf__grid {
       grid-template-columns: 1fr;
-    }
-
-    .shop-the-shelf__card {
-      border-right: none;
-    }
-
-    .shop-the-shelf__card:not(:first-child) {
-      border-top: 2px solid var(--color-foreground, #111);
     }
   }
 {% endstylesheet %}
@@ -313,13 +281,7 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Category photo"
-        },
-        {
-          "type": "checkbox",
-          "id": "highlight",
-          "label": "Highlight this card (mint background)",
-          "default": false
+          "label": "Category photo (square)"
         }
       ]
     }
@@ -332,8 +294,7 @@
           "type": "category",
           "settings": {
             "title": "Sleeves & Storage",
-            "description": "Inner, outer, crates and dividers — 7″, 10″, 12″",
-            "highlight": true
+            "description": "Inner, outer, crates and dividers — 7″, 10″ and 12″"
           }
         },
         {
