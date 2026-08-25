@@ -111,12 +111,12 @@
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
-                    "type_preset": "h3",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
+                    "type_preset": "h2",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "",
+                    "line_height": "tight",
                     "letter_spacing": "normal",
-                    "case": "none",
+                    "case": "upper",
                     "wrap": "pretty",
                     "background": false,
                     "background_color": "#00000026",
@@ -214,7 +214,11 @@
                   "blocks": {}
                 }
               },
-              "block_order": []
+              "block_order": [
+                "quantity",
+                "add-to-cart",
+                "accelerated-checkout"
+              ]
             },
             "text_aEtTtq": {
               "type": "text",
