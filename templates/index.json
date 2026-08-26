@@ -329,7 +329,7 @@
       "name": "Shop the shelf",
       "settings": {
         "heading": "Shop the shelf",
-        "eyebrow": "Four ways in",
+        "eyebrow": "Drag to browse",
         "section_width": "page-width",
         "background_color": "",
         "padding-block-start": 44,

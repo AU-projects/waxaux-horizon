@@ -1,7 +1,6 @@
 {% comment %}
-  Category card grid — editorial routing block for the homepage.
-  Each block is one card: square photo tile with a small mint accent dash,
-  title, short description, and a "Shop →" text link.
+  Category carousel — t5 design: horizontal scroll, 330px tiles,
+  label overlay pill at tile bottom, third tile mint.
 {% endcomment %}
 
 {% liquid
@@ -14,7 +13,7 @@
   class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
 ></div>
 <div
-  class="shop-the-shelf section spacing-style{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}{% if section.settings.section_width == 'page-width' %} page-width{% endif %}"
+  class="shop-the-shelf section spacing-style{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
   style="{% render 'spacing-style', settings: section.settings %}"
 >
   {%- if section.settings.heading != blank or section.settings.eyebrow != blank -%}
@@ -28,100 +27,107 @@
     </div>
   {%- endif -%}
 
-  <div class="shop-the-shelf__grid">
+  <div class="shop-the-shelf__track">
+    {%- assign card_index = 0 -%}
     {%- for block in section.blocks -%}
       {%- if block.type == 'category' -%}
-        <div class="shop-the-shelf__card" {{ block.shopify_attributes }}>
+        {%- assign card_index = card_index | plus: 1 -%}
+        <div class="shop-the-shelf__card{% if card_index == 3 %} shop-the-shelf__card--mint{% endif %}" {{ block.shopify_attributes }}>
           <div class="shop-the-shelf__tile">
-            <span class="shop-the-shelf__dash" aria-hidden="true"></span>
             {%- if block.settings.image != blank -%}
-              {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 25vw, 90vw', widths: '300,450,600', class: 'shop-the-shelf__tile-img' }}
-            {%- else -%}
-              <span class="shop-the-shelf__tile-placeholder">Square photo 1:1</span>
+              {{ block.settings.image | image_url: width: 700 | image_tag: loading: 'lazy', sizes: '340px', widths: '340,680', class: 'shop-the-shelf__tile-img' }}
             {%- endif -%}
           </div>
           <div class="shop-the-shelf__body">
-            <div class="shop-the-shelf__name">{{ block.settings.title }}</div>
-            {%- if block.settings.description != blank -%}
-              <p class="shop-the-shelf__desc">{{ block.settings.description }}</p>
-            {%- endif -%}
-            <a href="{{ block.settings.url | default: '#' }}" class="shop-the-shelf__cta">
-              <span class="shop-the-shelf__cta-label">{{ block.settings.cta_label | default: 'Shop' }}</span>
-              <span class="shop-the-shelf__cta-arrow" aria-hidden="true">→</span>
-            </a>
+            <span class="shop-the-shelf__name">{{ block.settings.title }}</span>
+            <a href="{{ block.settings.url | default: '#' }}" class="shop-the-shelf__cta" aria-label="{{ block.settings.title }}">→</a>
           </div>
         </div>
       {%- endif -%}
     {%- endfor -%}
   </div>
+
+  <div class="shop-the-shelf__dots" aria-hidden="true">
+    <span class="shop-the-shelf__dot shop-the-shelf__dot--active"></span>
+    <span class="shop-the-shelf__dot"></span>
+    <span class="shop-the-shelf__dot"></span>
+  </div>
 </div>
 
 {% stylesheet %}
+  /* t5 design — horizontal drag carousel, overlay label pill */
+
   .shop-the-shelf {
     display: flex;
     flex-direction: column;
-    gap: 0;
   }
 
+  /* Heading row */
   .shop-the-shelf__header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding-bottom: 14px;
-    border-bottom: 2px solid var(--color-foreground, #111);
-    margin-bottom: 0;
+    padding: 0 0 20px;
   }
 
   .shop-the-shelf__heading {
-    font: 700 15px/1 var(--font-heading--family, sans-serif);
-    letter-spacing: 0.1em;
+    font: 700 36px/1 var(--font-heading--family, sans-serif);
+    letter-spacing: 0.006em;
     text-transform: uppercase;
     margin: 0;
+    color: #111;
   }
 
   .shop-the-shelf__eyebrow {
-    font: 500 11px var(--font-accent--family, monospace);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: color-mix(in srgb, currentColor 60%, transparent);
+    font: 400 12.5px var(--font-body--family, sans-serif);
+    color: #8a8a85;
+    letter-spacing: 0;
+    text-transform: none;
   }
 
-  .shop-the-shelf__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-    padding: 24px 0 30px;
-    border-bottom: 2px solid var(--color-foreground, #111);
-  }
-
-  .shop-the-shelf__card {
+  /* Horizontal scroll track — left edge flush with section, 4th card peeks */
+  .shop-the-shelf__track {
     display: flex;
-    flex-direction: column;
-    background: var(--color-background, #fff);
-    border-radius: 14px;
-    overflow: hidden;
-    border: 1px solid rgba(0,0,0,0.1);
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    /* Pull left margin so first card aligns to the section edge */
+    margin-inline: calc(-1 * var(--page-width-padding, 20px));
+    padding-inline: var(--page-width-padding, 20px);
+    padding-bottom: 4px;
   }
 
-  /* Third card is mint (Turntables & Hardware in the default block order). */
-  .shop-the-shelf__card:nth-child(3) {
+  .shop-the-shelf__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Each card: 330px fixed, square tile, rounded 18px */
+  .shop-the-shelf__card {
+    flex: 0 0 330px;
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    scroll-snap-align: start;
+    background: #f4f3ef;
+  }
+
+  /* Third card: mint tile */
+  .shop-the-shelf__card--mint {
     background: var(--waxaux-mint, #6fdda0);
   }
 
-  .shop-the-shelf__card:nth-child(3) .shop-the-shelf__tile {
-    background: transparent;
-  }
-
-  .shop-the-shelf__card:nth-child(3) .shop-the-shelf__desc {
-    color: #1e3d2c;
-  }
-
-  /* Square tile via padding-bottom hack — reliable across flex and grid contexts. */
+  /* Square tile via padding-bottom trick */
   .shop-the-shelf__tile {
     position: relative;
     padding-bottom: 100%;
-    background: repeating-linear-gradient(135deg, #e8e6e1 0 7px, #f3f2ee 7px 14px);
+    background: repeating-linear-gradient(135deg, #eae8e3 0 7px, #f4f3ef 7px 14px);
     overflow: hidden;
+  }
+
+  .shop-the-shelf__card--mint .shop-the-shelf__tile {
+    background: transparent;
   }
 
   .shop-the-shelf__tile-img {
@@ -133,76 +139,78 @@
     display: block;
   }
 
-  .shop-the-shelf__tile-placeholder {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font: 500 9.5px var(--font-accent--family, monospace);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: #8a8a85;
-    background: rgba(255,255,255,0.8);
-    padding: 3px 8px;
-    white-space: nowrap;
-  }
-
+  /* Label overlay pill — white bar at tile bottom with title + round arrow */
   .shop-the-shelf__body {
-    padding: 16px;
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+    background: #fff;
+    border-radius: 999px;
+    padding: 11px 10px 11px 18px;
     display: flex;
-    flex-direction: column;
-    gap: 7px;
-    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    z-index: 2;
   }
 
   .shop-the-shelf__name {
-    font: 700 18px/1.15 var(--font-heading--family, sans-serif);
-    letter-spacing: 0.012em;
-    text-transform: uppercase;
-  }
-
-  .shop-the-shelf__desc {
-    font: 400 12px/1.55 var(--font-body--family, sans-serif);
-    color: #6f6e69;
+    font: 600 14px/1.2 var(--font-heading--family, sans-serif);
+    color: #111;
     flex: 1;
-    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  /* Arrow → CTA: original text-link style. */
+  /* Round arrow button — mint on first card, grey on others */
   .shop-the-shelf__cta {
+    flex: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    background: #f4f3ef;
+    display: grid;
+    place-items: center;
+    text-decoration: none;
+    color: #111;
+    font: 600 13px/1 var(--font-heading--family, sans-serif);
+    transition: background 0.15s;
+  }
+
+  .shop-the-shelf__card:first-child .shop-the-shelf__cta {
+    background: var(--waxaux-mint, #6fdda0);
+  }
+
+  /* Dot pagination */
+  .shop-the-shelf__dots {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-top: 2px;
-    font: 700 10.5px var(--font-heading--family, sans-serif);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--color-foreground, #111);
+    justify-content: center;
+    gap: 7px;
+    padding: 20px 0 4px;
   }
 
-  .shop-the-shelf__cta-label {
-    border-bottom: 3px solid var(--waxaux-mint, #6fdda0);
-    padding-bottom: 2px;
+  .shop-the-shelf__dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+    background: #dcdad4;
   }
 
-  .shop-the-shelf__cta-arrow {
-    color: var(--waxaux-mint, #6fdda0);
-  }
-
-  .shop-the-shelf__dash {
-    display: none;
-  }
-
-  @media screen and (max-width: 989px) {
-    .shop-the-shelf__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  .shop-the-shelf__dot--active {
+    width: 24px;
+    background: #111;
   }
 
   @media screen and (max-width: 749px) {
-    .shop-the-shelf__grid {
-      grid-template-columns: 1fr;
+    .shop-the-shelf__card {
+      flex: 0 0 80vw;
+    }
+
+    .shop-the-shelf__heading {
+      font-size: 26px;
     }
   }
 {% endstylesheet %}
