@@ -1,15 +1,14 @@
 /* WaxAux brand layer — additive overrides on top of Horizon's base.css.
-   Scoped to stable component class names; does not touch cart/checkout/variant logic.
-   --waxaux-mint / --waxaux-ink / --waxaux-cream come from Theme Settings → WaxAux brand,
-   emitted by snippets/waxaux-tokens.liquid — don't hardcode brand hex here. */
+   Design system: t5 (light system) — #f4f3ef surface, 1px hairlines #eceae4,
+   mint #6FDDA0 as accent only, 18px media radius, 999px pills everywhere.
+   --waxaux-mint / --waxaux-ink / --waxaux-cream from Theme Settings → WaxAux brand. */
 
-/* Product gallery: mint panel behind the media, matching the design's gallery slab.
-   !important needed: Horizon sets padding inline via the section's spacing-style,
-   which otherwise always wins over an external stylesheet rule on the same element. */
+/* ── Product gallery (product page) ── */
 media-gallery {
-  background: var(--waxaux-mint);
-  padding: clamp(16px, 3vw, 32px) !important;
+  background: #f4f3ef;
+  padding: clamp(16px, 3vw, 28px) !important;
   box-sizing: border-box;
+  border-radius: 18px;
 }
 
 /* Ticker / marquee bars: uppercase, tracked-out, monospace-leaning rhythm */
@@ -19,172 +18,114 @@ marquee-component .marquee__content :is(p, h1, h2, h3, h4, h5, h6) {
   font-weight: 600;
 }
 
-/* Facet filter pills */
+/* ── Facet filter pills (t5: pill shape, mint active) ─────────── */
 .facets__pill-label {
-  border-radius: 0;
-  border-width: 1.5px;
+  border-radius: 999px;
 }
 
 .facets__pill-input:checked + .facets__pill-label {
-  background: var(--waxaux-ink);
-  color: var(--waxaux-mint);
-  border-color: var(--waxaux-ink);
+  background: #111;
+  color: var(--waxaux-mint, #6fdda0);
+  border-color: #111;
 }
 
-.facets__pill-input:not(:checked) + .facets__pill-label:hover {
-  border-color: var(--waxaux-ink);
+.facets__pill-input:not(:checked) + .facets__pill-label {
+  background: #f4f3ef;
+  border-color: transparent;
+  color: #111;
 }
 
-/* Sort control accent */
-.sorting-filter__option[aria-selected="true"] .sorting-filter__label,
-.sorting-filter__label {
-  text-transform: uppercase;
-}
-
-/* Variant picker: hard-edged swatches/pills, mint selected state */
-.variant-option__swatch-value,
+/* ── Variant picker: pill selected state ───────────────────────── */
 .variant-option__button-label {
-  border-radius: 0 !important;
+  border-radius: 999px;
 }
 
-.variant-option input:checked + .variant-option__button-label,
-.variant-option input:checked ~ .variant-option__swatch-value {
-  background: var(--waxaux-mint);
-  border-color: var(--waxaux-ink);
-  color: var(--waxaux-ink);
+.variant-option input:checked + .variant-option__button-label {
+  background: #111;
+  border-color: #111;
+  color: var(--waxaux-mint, #6fdda0);
 }
 
-/* Quantity selector + add to cart: hard-edged stepper, pill CTA */
+/* ── Quantity stepper + Add to cart ────────────────────────────── */
 .quantity-selector {
-  border-radius: 0;
-  border-width: 1.5px;
+  border-radius: 999px;
+  background: #f4f3ef;
+  border: none;
 }
 
 .add-to-cart-button.button--primary,
 button[name="add"].button {
   border-radius: 999px;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  background: #111;
+  color: var(--waxaux-mint, #6fdda0);
 }
 
-/* Accordion rows (Shipping & returns, Sizing, Reviews) */
+/* ── Product cards: 18px radius, no hard border ────────────────── */
+.product-card {
+  --product-card-corner-radius: 18px;
+}
+
+/* ── Price: mint pill (t5 style) ───────────────────────────────── */
+/* Targets the price display in product cards and product lists. */
+.price .price-item--regular,
+.price .price-item--sale {
+  background: var(--waxaux-mint, #6fdda0);
+  border-radius: 999px;
+  padding: 6px 13px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  display: inline-block;
+  color: #111;
+}
+
+/* ── Accordions (product page) ─────────────────────────────────── */
 .accordion .details__header {
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  font-weight: 600;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  color: #111;
 }
 
-/* Product cards: square media, hard edge, mint price chip on hover */
-.product-card {
-  --product-card-corner-radius: 0;
+.accordion .details__header .svg-wrapper {
+  color: var(--waxaux-mint, #6fdda0);
 }
 
-.product-card__link:hover .price .price-item__group {
-  text-decoration: none;
-}
-
-/* ── Announcement bar ───────────────────────────────────────────── */
-/* Force mint text on the black ticker; Horizon's contrast-override
-   would default to white, but the design specifies mint. */
-.announcement-bar,
-.announcement-bar a,
-.announcement-bar__text {
-  color: var(--waxaux-mint) !important;
-}
-
-/* ── Header nav ────────────────────────────────────────────────── */
-/* Uppercase, tracked, 600-weight links matching design 2a/2b. */
-.header__links .header__link,
-.header__links .link {
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 600;
-  font-size: 0.75rem;
-}
-
-/* Active/hover underline accent — matches design's 3px mint underline on active nav. */
-.header__links .header__link[aria-current="page"],
-.header__links .header__link:hover {
-  text-decoration: none;
-  border-bottom: 3px solid var(--waxaux-ink);
-  padding-bottom: 2px;
-}
-
-/* ── Footer ─────────────────────────────────────────────────────── */
-/* Uppercase nav headings (Shop / Help), mint colour on dark background. */
-#footer .footer-block__heading,
-#footer-utilities .footer-block__heading {
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.65rem;
-  color: var(--waxaux-mint);
-}
-
-/* Footer menu link colours on dark bg. */
-#footer .footer-block__link,
-#footer .footer__link {
-  color: #a3a29c;
-}
-
-#footer .footer-block__link:hover,
-#footer .footer__link:hover {
-  color: #ffffff;
-}
-
-/* Footer utilities (copyright / policy) on dark bg. */
-#footer-utilities,
-#footer-utilities a {
-  color: #6f6e69;
-}
-
-/* ── Collection — price chip on product cards ──────────────────── */
-/* Mint chip pinned bottom-right of the card image, matching design 2b. */
-.product-card .price {
-  position: relative;
-}
-
-/* ── Product cards ─────────────────────────────────────────────── */
-/* Hard-edged with no rounded corners. */
-.product-card {
-  --product-card-corner-radius: 0;
-}
-
-.product-card__link:hover .price .price-item__group {
-  text-decoration: none;
-}
-
-/* ── Collection filter bar ─────────────────────────────────────── */
-/* Sort label underline accent, matching design 2b. */
-.sorting-filter__option[aria-selected="true"] .sorting-filter__label {
-  text-transform: uppercase;
-  border-bottom: 3px solid var(--waxaux-mint);
-  padding-bottom: 2px;
-}
-
-/* ── Collection header slab ────────────────────────────────────── */
-/* Waveform decorative bars inside the mint collection header, matching design 2b.
-   Rendered as a pseudo-element after the breadcrumb, matching the 5-bar pattern. */
-.collection-header__waveform {
-  display: flex;
-  align-items: flex-end;
-  gap: 5px;
-  margin-top: 16px;
-}
-
-.collection-header__waveform span {
-  display: block;
-  width: 8px;
-  background: var(--waxaux-ink);
-  border-radius: 4px;
-}
-
-/* ── "Load more" button ─────────────────────────────────────────── */
-/* Pill shape, inverted, matching design 2b's "Load 24 more" button. */
+/* ── "Load more" / pagination: pill ────────────────────────────── */
 .pagination__load-more .button,
 .pagination .button {
   border-radius: 999px;
+  background: #111;
+  color: var(--waxaux-mint, #6fdda0);
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+/* ── Footer (dark bg, t5 style) ─────────────────────────────────── */
+.footer-block__heading {
   text-transform: uppercase;
-  letter-spacing: 0.09em;
-  font-weight: 700;
+  letter-spacing: 0.14em;
+  font-size: 0.65rem;
+  color: var(--waxaux-mint, #6fdda0);
+  font-weight: 500;
+}
+
+.footer-block__link,
+.footer__link {
+  color: #a3a29c;
+}
+
+.footer-block__link:hover,
+.footer__link:hover {
+  color: #fff;
+}
+
+/* ── Announcement bar (t5: light, grey text, 3-item) ───────────── */
+/* t5 shows a single-line bar with 3 items, no dark bg.
+   If the header-group is configured with a dark background, this
+   overrides colour to mint; if light bg, text stays grey. */
+.announcement-bar--dark .announcement-bar__text,
+.announcement-bar--dark a {
+  color: var(--waxaux-mint, #6fdda0);
 }
