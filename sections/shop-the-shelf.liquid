@@ -57,7 +57,6 @@
 </div>
 
 {% stylesheet %}
-  /* v2 — mint first-tile, U-stroke, pill CTA */
   .shop-the-shelf {
     display: flex;
     flex-direction: column;
@@ -90,7 +89,8 @@
   .shop-the-shelf__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0;
+    gap: 18px;
+    padding: 24px 0 30px;
     border-bottom: 2px solid var(--color-foreground, #111);
   }
 
@@ -98,43 +98,30 @@
     display: flex;
     flex-direction: column;
     background: var(--color-background, #fff);
-    border-right: 2px solid var(--color-foreground, #111);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.1);
   }
 
-  .shop-the-shelf__card:last-child {
-    border-right: none;
-  }
-
-  /* First card always mint. */
-  .shop-the-shelf__card:first-child {
+  /* Third card is mint (Turntables & Hardware in the default block order). */
+  .shop-the-shelf__card:nth-child(3) {
     background: var(--waxaux-mint, #6fdda0);
   }
 
-  .shop-the-shelf__card:first-child .shop-the-shelf__desc {
+  .shop-the-shelf__card:nth-child(3) .shop-the-shelf__tile {
+    background: transparent;
+  }
+
+  .shop-the-shelf__card:nth-child(3) .shop-the-shelf__desc {
     color: #1e3d2c;
   }
 
-  /* First card: inverted pill CTA. */
-  .shop-the-shelf__card:first-child .shop-the-shelf__cta {
-    background: var(--color-foreground, #111);
-    color: var(--waxaux-mint, #6fdda0);
-    border-color: var(--color-foreground, #111);
-  }
-
-  /* U-stroke image tile: inset, square via padding-bottom hack (more robust than
-     aspect-ratio in flex contexts), rounded bottom corners echoing the logo mark. */
+  /* Square tile via padding-bottom hack — reliable across flex and grid contexts. */
   .shop-the-shelf__tile {
-    margin: 16px 16px 0;
     position: relative;
-    padding-bottom: calc(100% - 32px); /* square: height = width after margin deduction */
+    padding-bottom: 100%;
     background: repeating-linear-gradient(135deg, #e8e6e1 0 7px, #f3f2ee 7px 14px);
-    border: 2px solid var(--color-foreground, #111);
-    border-radius: 0 0 60px 60px;
     overflow: hidden;
-  }
-
-  .shop-the-shelf__card:first-child .shop-the-shelf__tile {
-    background: rgba(255,255,255,0.92);
   }
 
   .shop-the-shelf__tile-img {
@@ -155,7 +142,7 @@
     text-transform: uppercase;
     letter-spacing: 0.04em;
     color: #8a8a85;
-    background: #fff;
+    background: rgba(255,255,255,0.8);
     padding: 3px 8px;
     white-space: nowrap;
   }
@@ -181,24 +168,26 @@
     margin: 0;
   }
 
-  /* Shop pill button. */
+  /* Arrow → CTA: original text-link style. */
   .shop-the-shelf__cta {
-    align-self: flex-start;
-    margin-top: 4px;
-    padding: 9px 18px;
-    border-radius: 999px;
-    border: 2px solid var(--color-foreground, #111);
-    background: transparent;
-    color: var(--color-foreground, #111);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 2px;
     font: 700 10.5px var(--font-heading--family, sans-serif);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
-    display: inline-block;
+    color: var(--color-foreground, #111);
+  }
+
+  .shop-the-shelf__cta-label {
+    border-bottom: 3px solid var(--waxaux-mint, #6fdda0);
+    padding-bottom: 2px;
   }
 
   .shop-the-shelf__cta-arrow {
-    display: none;
+    color: var(--waxaux-mint, #6fdda0);
   }
 
   .shop-the-shelf__dash {
