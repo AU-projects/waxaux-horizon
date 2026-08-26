@@ -250,7 +250,6 @@
         "background_media": "none",
         "background_color": "#f4f3ef",
         "video_position": "cover",
-        "background_image": "",
         "background_image_position": "cover",
         "toggle_overlay": false,
         "overlay_color": "rgba(0,0,0,0)",
@@ -287,7 +286,7 @@
             "description": "Inner, outer, crates and dividers — 7″, 10″ and 12″",
             "url": "shopify://collections/all",
             "cta_label": "Shop",
-            "image": "shopify://shop_images/outsersleeve.jpg"
+            "image": "shopify://shop_images/Crea_qualsiasi_immagine-47ca42cc-8f00-4108-96f0-c6707402b73c.jpg"
           }
         },
         "cat_cleaning": {
